@@ -1,0 +1,109 @@
+12:33:56.710 [main] INFO  - Starting firefox driver
+12:34:01.747 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:34:02.284 [main] INFO  - Logging in......
+12:34:05.246 [main] INFO  - login successful
+12:34:05.293 [main] INFO  - Screenshot taken
+12:34:05.490 [main] INFO  - Cookies deleted
+12:34:05.911 [main] INFO  - Browser closed
+12:34:06.897 [main] INFO  - Starting firefox driver
+12:34:13.708 [main] INFO  - Total time it took the system to respond is: 6 seconds
+12:34:14.231 [main] INFO  - starting TC ID - 34206: Incorrect Username/Correct password validation test case
+12:34:15.298 [main] INFO  - Validation was successful - test passed
+12:34:15.322 [main] INFO  - Screenshot taken
+12:34:15.335 [main] INFO  - Cookies deleted
+12:34:15.749 [main] INFO  - Browser closed
+12:34:16.715 [main] INFO  - Starting firefox driver
+12:34:22.809 [main] INFO  - Total time it took the system to respond is: 5 seconds
+12:34:23.335 [main] INFO  - starting TC ID - 34207: Correct username/Incorrect password validation test case
+12:34:24.614 [main] INFO  - Validation was successful - test passed
+12:34:24.632 [main] INFO  - Screenshot taken
+12:34:24.646 [main] INFO  - Cookies deleted
+12:34:25.060 [main] INFO  - Browser closed
+12:34:26.049 [main] INFO  - Starting firefox driver
+12:34:31.325 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:34:31.854 [main] INFO  - starting TC ID - 34208: Incorrect username/Incorrect password validation test case
+12:34:33.042 [main] INFO  - Validation was successful - test passed
+12:34:33.062 [main] INFO  - Screenshot taken
+12:34:33.086 [main] INFO  - Cookies deleted
+12:34:33.603 [main] INFO  - Browser closed
+12:34:34.601 [main] INFO  - Starting firefox driver
+12:34:38.037 [main] INFO  - Total time it took the system to respond is: 2 seconds
+12:34:38.551 [main] INFO  - starting TC ID - 34209: Blank username/Correct password validation test case
+12:34:39.090 [main] INFO  - Validation was successful - test passed
+12:34:39.120 [main] INFO  - Screenshot taken
+12:34:39.138 [main] INFO  - Cookies deleted
+12:34:39.550 [main] INFO  - Browser closed
+12:34:40.533 [main] INFO  - Starting firefox driver
+12:34:45.726 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:34:46.250 [main] INFO  - starting TC ID - 34210: Blank username/Incorrect password validation test case
+12:34:46.821 [main] INFO  - Validation was successful - test passed
+12:34:46.844 [main] INFO  - Screenshot taken
+12:34:46.862 [main] INFO  - Cookies deleted
+12:34:47.280 [main] INFO  - Browser closed
+12:34:48.271 [main] INFO  - Starting firefox driver
+12:34:53.959 [main] INFO  - Total time it took the system to respond is: 5 seconds
+12:34:54.482 [main] INFO  - starting TC ID - 34211: Incorrect Username email format/blank password validation test case
+12:34:55.066 [main] INFO  - Validation was successful - test passed
+12:34:55.095 [main] INFO  - Screenshot taken
+12:34:55.115 [main] INFO  - Cookies deleted
+12:34:55.530 [main] INFO  - Browser closed
+12:34:56.518 [main] INFO  - Starting firefox driver
+12:35:00.270 [main] INFO  - Total time it took the system to respond is: 3 seconds
+12:35:00.788 [main] INFO  - starting TC ID - 34212: Correct username/Blank password validation test case
+12:35:01.363 [main] INFO  - Validation was successful - test passed
+12:35:01.385 [main] INFO  - Screenshot taken
+12:35:01.401 [main] INFO  - Cookies deleted
+12:35:01.817 [main] INFO  - Browser closed
+12:35:02.803 [main] INFO  - Starting firefox driver
+12:35:08.208 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:35:08.731 [main] INFO  - starting TC ID - 35084: Successfully Reset validation test case
+12:35:09.741 [main] INFO  - Forgot password email was sent successfully - test passed
+12:35:09.761 [main] INFO  - Screenshot taken
+12:35:09.777 [main] INFO  - Cookies deleted
+12:35:10.199 [main] INFO  - Browser closed
+12:35:11.198 [main] INFO  - Starting firefox driver
+12:35:19.375 [main] INFO  - Total time it took the system to respond is: 7 seconds
+12:35:19.891 [main] INFO  - starting TC ID - 35084: Successfully Reset validation test case
+12:35:20.450 [main] INFO  - Forgot password email was sent successfully - test passed
+12:35:20.471 [main] INFO  - Screenshot taken
+12:35:20.487 [main] INFO  - Cookies deleted
+12:35:20.900 [main] INFO  - Browser closed
+12:35:21.904 [main] INFO  - Starting firefox driver
+12:35:27.426 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:35:27.948 [main] INFO  - starting TC ID - 34270: Invalid email address format validation test case
+12:35:28.528 [main] INFO  - Email format validation was successful - test passed
+12:35:28.551 [main] INFO  - Screenshot taken
+12:35:28.573 [main] INFO  - Cookies deleted
+12:35:28.987 [main] INFO  - Browser closed
+12:35:29.984 [main] INFO  - Starting firefox driver
+12:35:35.275 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:35:35.795 [main] INFO  - starting TC ID - 34213: Logout test case
+12:35:35.795 [main] INFO  - Logging in......
+12:35:37.623 [main] INFO  - login successful
+12:35:40.432 [main] INFO  - user logged out successfully - test passed
+12:35:40.449 [main] INFO  - Screenshot taken
+12:35:40.465 [main] INFO  - Cookies deleted
+12:35:40.884 [main] INFO  - Browser closed
+12:35:41.865 [main] INFO  - Starting firefox driver
+12:35:48.507 [main] INFO  - Total time it took the system to respond is: 6 seconds
+12:35:49.041 [main] INFO  - starting TC ID - 35086: Sign Up - Company functionality test case
+12:35:54.954 [main] INFO  - Company signed up successfully  - test passed
+12:35:54.969 [main] INFO  - Screenshot taken
+12:35:54.986 [main] INFO  - Cookies deleted
+12:35:55.414 [main] INFO  - Browser closed
+12:35:56.421 [main] INFO  - Starting firefox driver
+12:36:01.374 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:36:01.894 [main] INFO  - starting TC ID - 35088: Sign Up - Individual functionality test case
+12:36:05.964 [main] INFO  - Individual signed up successfully - test passed
+12:36:05.980 [main] INFO  - Screenshot taken
+12:36:06.005 [main] INFO  - Cookies deleted
+12:36:06.426 [main] INFO  - Browser closed
+12:36:07.404 [main] INFO  - Starting firefox driver
+12:36:12.742 [main] INFO  - Total time it took the system to respond is: 4 seconds
+12:36:13.262 [main] INFO  - starting TC ID - 36708: Create a domestic shipment test case
+12:36:13.262 [main] INFO  - Logging in......
+12:36:15.356 [main] INFO  - login successful
+12:36:26.270 [main] INFO  - successfully created a domestic shipment - test passed
+12:36:26.308 [main] INFO  - Screenshot taken
+12:36:26.330 [main] INFO  - Cookies deleted
+12:36:26.753 [main] INFO  - Browser closed

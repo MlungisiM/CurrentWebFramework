@@ -1,0 +1,175 @@
+trigger:
+- main
+
+
+schedules:
+  - cron: "0 5 * * *"  # This is 5 AM UTC (9 AM UAE)
+    displayName: Daily 9 AM UAE time
+    branches:
+      include:
+        - main   # Specify the branch you want the schedule to run on
+    always: true  # Ensures that the pipeline runs even if there are no code changes
+
+variables:
+- group: WaslahAutomationConfig  # Name of your variable group
+
+jobs:
+- job: Run_Waslah_QA_Web_Automation
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+
+  - checkout: self
+    persistCredentials: true
+    clean: true
+    displayName: 'Checkout Waslah QA Web repo'
+
+  # Set up Java manually
+  - script: |
+      sudo apt-get install -y openjdk-8-jdk
+      export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+      export PATH=$JAVA_HOME/bin:$PATH
+      java -version
+    displayName: 'Set up Java 8'
+
+  - task: Maven@4
+    inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: 1.8
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
+      publishJUnitResults: false
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      goals: 'clean install'
+    condition: succeededOrFailed()
+    displayName: "Waslah test results"
+
+  - script: |
+      mvn test -DsuiteXmlFile=testng.xml
+    displayName: 'Run Web tests with TestNG'
+
+  - script: |
+      chmod +x ./generate_report.sh
+      ./generate_report.sh
+    displayName: 'Generate Final Report'
+
+  # Publish video files as artifacts
+  - publish: $(System.DefaultWorkingDirectory)/reports
+    artifact: extent-reports
+    displayName: 'Publish Reports Artifacts'
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Define your SendGrid API key (referencing pipeline secret variable)
+        $apiKey = "$(SENDGRID_API_KEY)"
+
+        # Define the SendGrid API URL
+        $sendGridUrl = "https://api.sendgrid.com/v3/mail/send"
+
+        # Define the email parameters
+        $fromEmail = "noreply@emiratespost.email"  # Sender email
+        $toEmails = @("abdelazeem.hussein@7x.ae", "mlungisi.mbele@7x.ae", "sankari.devi@7x.ae", "nithyashri.raov@emiratespost.ae", "neha.gopal@7x.ae", "adilam@7x.ae", "michael.ghantous@7x.ae")  # Multiple recipient emails
+        $subject = "Waslah Web Automation Test Report"
+        $finalReportPath = "$(System.DefaultWorkingDirectory)/reports/TestSummary.html"
+        $extentReportPath = "$(System.DefaultWorkingDirectory)/reports/Waslah_Execution_Report.html"
+
+        # Read the final report HTML content
+        $bodyContent = Get-Content -Path $finalReportPath -Raw
+
+        # Read the Extent report content and convert it to base64 for attachment
+        $extentReportBytes = [System.IO.File]::ReadAllBytes($extentReportPath)
+        $encodedExtentReport = [System.Convert]::ToBase64String($extentReportBytes)
+
+        # Prepare the email content for SendGrid with multiple recipients
+        $emailBody = @{
+            "personalizations" = @(
+                @{
+                    "to" = $toEmails | ForEach-Object { @{ "email" = $_ } }  # Dynamically create "to" array for multiple recipients
+                    "subject" = $subject
+                }
+            )
+            "from" = @{
+                "email" = $fromEmail
+            }
+            "content" = @(
+                @{
+                    "type" = "text/html"
+                    "value" = $bodyContent
+                }
+            )
+            "attachments" = @(
+                @{
+                    "content" = $encodedExtentReport
+                    "type" = "text/html"
+                    "filename" = "Waslah_Execution_Report.html"
+                    "disposition" = "attachment"
+                }
+            )
+        }
+
+        # Convert the email body to JSON
+        $emailBodyJson = $emailBody | ConvertTo-Json -Depth 4
+
+        # Send the request to SendGrid
+        try {
+            $response = Invoke-RestMethod -Uri $sendGridUrl -Method Post -Headers @{
+                "Authorization" = "Bearer $apiKey"
+                "Content-Type" = "application/json"
+            } -Body $emailBodyJson
+
+            Write-Host "Email sent successfully!"
+        } catch {
+            Write-Host "Failed to send email: $_"
+            exit 1
+        }
+    displayName: 'Send Final Report with SendGrid'
+
+
+#  - powershell: |
+#      $sendGridApiKey = "$(SENDGRID_API_KEY)"  # Get the API key from the pipeline variable
+#      $toEmails = @("abdelazeem.hussein@7x.ae", "mlungisi.mbele@7x.ae", "neha.gopal@7x.ae")  # List of recipient emails
+#      $from = "mlu.mbele@gmail.com"  # Sender email (should be verified)
+#      $subject = "Waslah Execution Report"
+#      $body = "Please find the Waslah Execution Report attached."
+#      $reportPath = "$(System.DefaultWorkingDirectory)/reports/Waslah_Execution_Report.html"  # Path to your report
+#
+#      # Create the personalizations block for all recipients
+#      $personalizations = @()
+#      foreach ($toEmail in $toEmails) {
+#          $personalizations += @{ to = @(@{ email = $toEmail }) }
+#      }
+#
+#      # Prepare the email data including attachment
+#      $files = Get-ChildItem -Path $reportPath -File
+#      $emailData = @{
+#          personalizations = $personalizations
+#          from = @{ email = $from }
+#          subject = $subject
+#          content = @(@{ type = "text/plain"; value = $body })
+#          attachments = @()
+#      }
+#
+#      foreach ($file in $files) {
+#          $attachment = @{
+#              content = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($file.FullName))
+#              type = "application/octet-stream"
+#              filename = $file.Name
+#              disposition = "attachment"
+#          }
+#          $emailData.attachments += $attachment
+#      }
+#
+#      # Convert the data to JSON
+#      $jsonBody = $emailData | ConvertTo-Json -Depth 4
+#
+#      # Send the email via SendGrid
+#      Invoke-RestMethod -Uri "https://api.sendgrid.com/v3/mail/send" `
+#                        -Method Post `
+#                        -Headers @{ "Authorization" = "Bearer $sendGridApiKey"; "Content-Type" = "application/json" } `
+#                        -Body $jsonBody
+#    displayName: 'Send Waslah Execution Report via SendGrid'
