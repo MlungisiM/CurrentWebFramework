@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/mlungisimbele/Documents/Projects/fleet">
+        <classes>
+            <class name="tests.login_tests">
+                <methods>
+                    <include name="loginSuccessfullyTest"/>
+                    <include name="loginUnsuccessfullyTest1"/>
+                    <include name="loginUnsuccessfullyTest2"/>
+                    <include name="loginUnsuccessfullyTest3"/>
+                    <include name="loginUnsuccessfullyTest4"/>
+                    <include name="loginUnsuccessfullyTest5"/>
+                    <include name="loginUnsuccessfullyTest6"/>
+                    <include name="loginUnsuccessfullyTest7"/>
+                    <include name="ResetPassword"/>
+                    <include name="forgotPasswordSuccessfully"/>
+                    <include name="InvalidEmail"/>
+                    <include name="Logout"/>
+                </methods>
+            </class>
+            <class name="tests.merchant_tests">
+                <methods>
+                    <include name="SignUpCompany"/>
+                    <include name="SignUpIndividual"/>
+                    <include name="CreateDomesticShipment"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Automation Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .header {
+            background: #002060;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #002060 3px solid;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            background: #ffffff;
+            margin-top: 20px;
+        }
+        .content h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .content th, .content td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .content th {
+            background-color: #EAEAEA;
+            color: black;
+            width: 40%; /* Set first column width */
+        }
+        .content td {
+            width: 60%; /* Set second column width */
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            background: #002060;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Test Automation Report</h1>
+    </div>
+
+    <div class="content">
+        <h2>Summary</h2>
+        <p>Dear Team,</p>
+        <p>Please find below the results of the latest test automation suite execution:</p>
+
+        <h2>Execution Details</h2>
+        <table>
+            <tr>
+                <th>Test Suite</th>
+                <td>Regression Suite</td>
+            </tr>
+            <tr>
+                <th>Execution Date</th>
+                <td>{{EXECUTION_DATE}}</td>
+            </tr>
+            <tr>
+                <th>Executed By</th>
+                <td>Automated CI/CD Pipeline</td>
+            </tr>
+            <tr>
+                <th>Environment</th>
+                <td>Staging</td>
+            </tr>
+        </table>
+
+        <h2>Results</h2>
+        <table>
+            <tr>
+                <th>Total Tests</th>
+                <td>{{TOTAL_TESTS}}</td>
+            </tr>
+            <tr>
+                <th>Passed</th>
+                <td>{{PASSED}}</td>
+            </tr>
+            <tr>
+                <th>Failed</th>
+                <td>{{FAILED}}</td>
+            </tr>
+            <tr>
+                <th>Skipped</th>
+                <td>{{SKIPPED}}</td>
+            </tr>
+        </table>
+        <p>For a detailed report, please refer to the attached file.</p>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 7X. All Rights Reserved.</p>
+    </div>
+</div>
+</body>
+</html>
